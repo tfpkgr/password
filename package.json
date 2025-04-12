@@ -1,7 +1,7 @@
 {
-	"name": "@tfpkgr/npm-template",
+	"name": "@tfpkgr/password",
 	"version": "0.0.0",
-	"description": "Package description",
+	"description": "Class-based utility for hashing and verifying passwords with bcrypt, made simple and secure.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.mts",
@@ -14,11 +14,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/tfpkgr/npm-template.git"
+		"url": "git+https://github.com/tfpkgr/password.git"
 	},
 	"keywords": [
 		"tfpkgr",
-		"npm-template"
+		"password"
 	],
 	"author": "tfpkgr",
 	"publishConfig": {
@@ -36,13 +36,17 @@
 	],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/tfpkgr/npm-template/issues"
+		"url": "https://github.com/tfpkgr/password/issues"
 	},
-	"homepage": "https://github.com/tfpkgr/npm-template#readme",
+	"homepage": "https://github.com/tfpkgr/password#readme",
 	"devDependencies": {
+		"@types/bcrypt": "^5.0.2",
 		"@types/node": "^22.14.1",
 		"gts": "^6.0.2",
 		"tsup": "^8.4.0",
 		"typescript": "^5.8.3"
+	},
+	"dependencies": {
+		"bcrypt": "^5.1.1"
 	}
 }

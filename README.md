@@ -1,97 +1,80 @@
-# @tfpkgr/package-name
+# @tfpkgr/password
 
-A standardized TypeScript-based npm package template with automatic bundling using **tsup**.
+Class-based utility for hashing and verifying passwords with bcrypt, made simple and secure.
+
+## Installation
+
+Install the package using npm, yarn, or pnpm:
+
+```bash
+npm install @tfpkgr/password
+```
+
+```bash
+yarn add @tfpkgr/password
+```
+
+```bash
+pnpm add @tfpkgr/password
+```
+
+## Usage Example
+
+Here is a quick example of how to use the `Password` utility:
+
+```typescript
+import Password from '@tfpkgr/password';
+
+(async () => {
+	const plainPassword = 'mySecretPassword';
+
+	// Hash the password
+	const hashedPassword = await Password.hash(plainPassword);
+	console.log('Hashed Password:', hashedPassword);
+
+	// Verify the password
+	const isMatch = await Password.verify(plainPassword, hashedPassword);
+	console.log('Password Match:', isMatch);
+})();
+```
+
+## API Reference
+
+### `Password.setSaltRounds(rounds: number): void`
+
+| Parameter | Type   | Required/Default | Description                       |
+| --------- | ------ | ---------------- | --------------------------------- |
+| `rounds`  | number | Required         | The number of salt rounds to set. |
+
+Sets the number of salt rounds used for hashing passwords.
+
+### `Password.hash(password: string): Promise<string>`
+
+| Parameter  | Type   | Required/Default | Description                     |
+| ---------- | ------ | ---------------- | ------------------------------- |
+| `password` | string | Required         | The plaintext password to hash. |
+
+Returns a promise that resolves to the hashed password.
+
+### `Password.verify(password: string, hash: string): Promise<boolean>`
+
+| Parameter  | Type   | Required/Default | Description                          |
+| ---------- | ------ | ---------------- | ------------------------------------ |
+| `password` | string | Required         | The plaintext password to verify.    |
+| `hash`     | string | Required         | The hashed password to compare with. |
+
+Returns a promise that resolves to `true` if the password matches the hash, otherwise `false`.
 
 ## Features
 
--   **TypeScript support**: Ensures type safety and maintainability.
--   **Automatic bundling**: Uses `tsup` to bundle TypeScript into CommonJS (CJS) and ECMAScript Module (ESM) formats.
--   **Google TypeScript Style**: Enforces code consistency with `gts`.
--   **GitHub Packages Registry**: Pre-configured for publishing to GitHub Packages.
--   **Linting & Formatting**: Includes `gts` for linting and auto-fixing code style issues.
--   **GitHub Actions**: Automated publishing workflow on release.
-
-## Getting Started
-
-### 1. Clone the Repository
-
-```sh
-npx degit tfpkgr/template-npm my-new-package
-cd my-new-package
-```
-
-### 2. Rename the Package
-
-Before installing dependencies, update the `name` field in `package.json` to your package name. This ensures `package-lock.json` is correctly updated when you install dependencies.
-
-### 3. Install Dependencies
-
-```sh
-npm install
-```
-
-### 4. Customize Package
-
--   Update `package.json` with the appropriate `description` and `author`.
--   Modify `src/index.ts` to implement your package functionality.
-
-### 5. Build the Package
-
-```sh
-npm run build
-```
-
-This will generate the `dist/` directory containing the compiled files.
-
-### 6. Lint & Fix Code
-
-```sh
-npm run lint  # Check for issues
-npm run fix   # Auto-fix issues
-```
-
-### 7. Publish to GitHub Packages
-
-#### Automatic Publishing on Release
-
-This repository includes a GitHub Actions workflow (`.github/workflows/publish.yaml`) that automatically publishes the package when a release is created.
-
-#### Manual Publishing
-
-1. Authenticate with GitHub:
-    ```sh
-    npm login --registry=https://npm.pkg.github.com
-    ```
-2. Publish the package:
-    ```sh
-    npm publish
-    ```
-
-## File Structure
-
-```
-my-new-package/
-├── src/              # Source TypeScript files
-│   ├── index.ts      # Main entry point
-├── dist/             # Compiled output (ignored in Git)
-├── .github/workflows/ # GitHub Actions workflow for publishing
-│   ├── publish.yaml  # Publish package on release
-├── tsconfig.json     # TypeScript configuration
-├── tsconfig.build.json # Build-specific TypeScript config
-├── tsup.config.ts    # tsup bundler config
-├── package.json      # Project metadata & dependencies
-├── README.md         # Project documentation
-├── LICENSE           # License file
-```
-
-## [Multiple Exports](docs/multiple-exports.md)
-
-If your package has multiple exports, refer to [this guide](docs/multiple-exports.md) for configuration details.
+-   Simple and secure password hashing and verification.
+-   Configurable salt rounds for enhanced security.
+-   Built on top of the reliable `bcrypt` library.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-🚀 Built with ❤️ by MyDeck
+Made with ❤️ by tfpkgr
